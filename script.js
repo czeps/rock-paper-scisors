@@ -13,7 +13,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        return "its a draw, play again";
+        return "It's a draw, play again";
     } else if (playerSelection == "paper" && computerSelection == "rock") {
         return "Player wins";
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
@@ -39,6 +39,12 @@ const buttons = document.querySelectorAll('.image');
 const message = document.querySelector('.message')
 message.textContent = "Start the game! 🎉"
 
+const playerParagraph = document.querySelector('.player')
+
+const computerParagraph = document.querySelector('.computer')
+
+
+
 
 let playerScore = 0;
 let computerScore = 0;
@@ -51,25 +57,30 @@ buttons.forEach((button) => {
 
         if (roundResult == "Player wins") {
             playerScore++;
-            message.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
+            message.textContent = "Player wins 🥳"
+            playerParagraph.textContent = `Player: ${playerScore}`;
+            computerParagraph.textContent = `Computer: ${computerScore}`
 
         } else if (roundResult == "Computer wins") {
             computerScore++;
-            message.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
-        } else if (roundResult == "its a draw, play again") {
-            message.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
+            message.textContent = "Computer wins 🤖"
+            playerParagraph.textContent = `Player: ${playerScore}`;
+            computerParagraph.textContent = `Computer: ${computerScore}`
+        } else if (roundResult == "It's a draw, play again") {
+            message.textContent = "It's a tie! 😅"
+            playerParagraph.textContent = `Player: ${playerScore}`;
+            computerParagraph.textContent = `Computer: ${computerScore}`
         }
 
 
         if (playerScore == 5) {
-            message.textContent = `Player wins! Start again!`
+            message.textContent = `Player wins! Start again! 🎉🎉🎉`
             playerScore = 0;
             computerScore = 0;
         } else if (computerScore == 5) {
-            message.textContent = `Computer wins! Start again!`
+            message.textContent = `Computer wins! Start again! 😭😭😭`
             playerScore = 0;
             computerScore = 0;
-
         }
     }
     )

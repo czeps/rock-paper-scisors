@@ -9,6 +9,8 @@ function getComputerChoice() {
         return "scissors";
     }
 }
+
+
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         return "its a draw, play again";
@@ -30,26 +32,81 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-function playGame() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Choose: rock, paper or scissors!").toLowerCase();
-        let computerSelection = getComputerChoice();
-        let roundResult = playRound(playerSelection, computerSelection);
+
+
+// Listen to player selection
+const buttons = document.querySelectorAll('button');
+const container = document.querySelector('#container');
+const resultContainer = document.createElement('div')
+container.appendChild(resultContainer);
+
+
+let playerScore = 0;
+let computerScore = 0;
+
+// const rockButton = document.querySelector('#rock');
+// const paperButton = document.querySelector('#paper');
+// const scissorsButton = document.querySelector('#scissors')
+
+
+//  rockButton.addEventListener('click', () => {
+//     let result = playRound("rock", getComputerChoice());
+//     console.log(result)
+//     if (result = "Player wins") {
+//         playerScore++;
+//     } else if (result == "Computer wins") {
+//         computerScore++;
+//     };
+
+// });
+
+// paperButton.addEventListener('click', () => {
+//     let result = playRound("paper", getComputerChoice());
+//     if (result = "Player wins") {
+//         playerScore++;
+//     } else if (result == "Computer wins") {
+//         computerScore++;
+//     }
+// })
+
+// scissorsButton.addEventListener('click', () => {
+//     let result = playRound("scissors", getComputerChoice());
+//     if (result = "Player wins") {
+//         playerScore++;
+//     } else if (result == "Computer wins") {
+//         computerScore++;
+//     }
+// })
+
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        let playerSelection = button.id;
+        let roundResult = playRound(playerSelection, getComputerChoice());
+
         if (roundResult == "Player wins") {
             playerScore++;
+            resultContainer.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
+
         } else if (roundResult == "Computer wins") {
             computerScore++;
+            resultContainer.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
+        } else if (roundResult == "its a draw, play again") {
+            resultContainer.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
+        }
+
+
+        if (playerScore == 5) {
+            resultContainer.textContent = `Player wins! Start again!`
+            playerScore = 0;
+            computerScore = 0;
+        } else if (computerScore == 5) {
+            resultContainer.textContent = `Computer wins! Start again!`
+            playerScore = 0;
+            computerScore = 0;
+
         }
     }
-    if (playerScore > computerScore) {
-        alert(`You win! Congrats!! Your result is ${playerScore} and computers: ${computerScore}`);
-    } else if (playerScore < computerScore) {
-        alert(`You lose! Fucking loser! Your result is ${playerScore} and computers: ${computerScore}`);
-    } else{
-        alert(`It's a draw! You both got ${playerScore} points`);
-    }
+    )
 }
-
-playGame();
+)

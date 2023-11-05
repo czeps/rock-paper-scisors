@@ -35,48 +35,13 @@ function playRound(playerSelection, computerSelection) {
 
 
 // Listen to player selection
-const buttons = document.querySelectorAll('button');
-const container = document.querySelector('#container');
-const resultContainer = document.createElement('div')
-container.appendChild(resultContainer);
+const buttons = document.querySelectorAll('.image');
+const message = document.querySelector('.message')
+message.textContent = "Start the game! 🎉"
 
 
 let playerScore = 0;
 let computerScore = 0;
-
-// const rockButton = document.querySelector('#rock');
-// const paperButton = document.querySelector('#paper');
-// const scissorsButton = document.querySelector('#scissors')
-
-
-//  rockButton.addEventListener('click', () => {
-//     let result = playRound("rock", getComputerChoice());
-//     console.log(result)
-//     if (result = "Player wins") {
-//         playerScore++;
-//     } else if (result == "Computer wins") {
-//         computerScore++;
-//     };
-
-// });
-
-// paperButton.addEventListener('click', () => {
-//     let result = playRound("paper", getComputerChoice());
-//     if (result = "Player wins") {
-//         playerScore++;
-//     } else if (result == "Computer wins") {
-//         computerScore++;
-//     }
-// })
-
-// scissorsButton.addEventListener('click', () => {
-//     let result = playRound("scissors", getComputerChoice());
-//     if (result = "Player wins") {
-//         playerScore++;
-//     } else if (result == "Computer wins") {
-//         computerScore++;
-//     }
-// })
 
 
 buttons.forEach((button) => {
@@ -86,22 +51,22 @@ buttons.forEach((button) => {
 
         if (roundResult == "Player wins") {
             playerScore++;
-            resultContainer.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
+            message.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
 
         } else if (roundResult == "Computer wins") {
             computerScore++;
-            resultContainer.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
+            message.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
         } else if (roundResult == "its a draw, play again") {
-            resultContainer.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
+            message.textContent = `${roundResult} |  Player: ${playerScore} | Computer: ${computerScore}`;
         }
 
 
         if (playerScore == 5) {
-            resultContainer.textContent = `Player wins! Start again!`
+            message.textContent = `Player wins! Start again!`
             playerScore = 0;
             computerScore = 0;
         } else if (computerScore == 5) {
-            resultContainer.textContent = `Computer wins! Start again!`
+            message.textContent = `Computer wins! Start again!`
             playerScore = 0;
             computerScore = 0;
 
